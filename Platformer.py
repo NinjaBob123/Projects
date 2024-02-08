@@ -3,7 +3,14 @@ import time
 from random import *
 from builtins import Exception
 
-
+"""""""""
+class Gravity():
+    def __init__():
+        self.force = int()
+        self.grav = -9
+    def cal(force):
+        self.afterForce = force + self.grav
+""""""""""
 class CancelJump(Exception):
     def __init__(self, message=None, data=None, *args):
         super(Exception, self).__init__(message, *args)
