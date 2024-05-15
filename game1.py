@@ -187,14 +187,14 @@ class Window:
         self.lvlLbl = None
         self.timeLbl = None
         self.count = 0
-        self.time = StringVar()
         self.level = 1
-        self.lvlStr = StringVar()
         self.foodCount = 0
         self.array = {}
         self.size = 0
         self.win = Tk()
         self.win.grid()
+        self.time = StringVar()
+        self.lvlStr = StringVar()
         self.score = StringVar()
         self.score.set(f"Score is: {self.size}")
         self.frame = Frame(self.win, bg='black')
