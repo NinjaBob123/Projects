@@ -1,14 +1,31 @@
+import time
 from time import sleep
 from tkinter import *
 import random
+from math import *
 
 
 class Window:
+    def getTime(self):
+        got = time.time()
+        elapsed = fabs(self.startTime - got)
+        if elapsed >= 60:
+            minutes = round(elapsed / 60)
+            seconds = round(elapsed - (minutes * 60), 2)
+        else:
+            minutes = 0
+            seconds = round(elapsed)
+        return f"{minutes}: {seconds}"
+
     def printFood(self, evt):
+        test = False
         for x in self.array:
             for y in self.array[x]:
                 if "food" in self.array[x][y]:
+                    test = True
                     print(f"({x}, {y})")
+        if not test:
+            self.foodCount = 0
 
     def getNum(self):
         self.num = self.array[self.pos[0]][self.pos[1]]
@@ -23,6 +40,15 @@ class Window:
 
     def moveUp(self, evt):
         self.pos = (self.pos[0], self.pos[1] - 1)
+        if self.pos[0] <= -1:
+            self.pos = (49, self.pos[1])
+        elif self.pos[0] >= 50:
+            self.pos = (0, self.pos[1])
+        if self.pos[1] <= -1:
+            self.pos = (self.pos[0], 49)
+        elif self.pos[1] >= 50:
+            self.pos = (self.pos[0], 0)
+
         self.draw()
         self.getNum()
         try:
@@ -50,6 +76,14 @@ class Window:
 
     def moveLeft(self, evt):
         self.pos = (self.pos[0] - 1, self.pos[1])
+        if self.pos[0] <= -1:
+            self.pos = (49, self.pos[1])
+        elif self.pos[0] >= 50:
+            self.pos = (0, self.pos[1])
+        if self.pos[1] <= -1:
+            self.pos = (self.pos[0], 49)
+        elif self.pos[1] >= 50:
+            self.pos = (self.pos[0], 0)
         self.draw()
         self.getNum()
         try:
@@ -77,6 +111,14 @@ class Window:
 
     def moveRight(self, evt):
         self.pos = (self.pos[0] + 1, self.pos[1])
+        if self.pos[0] <= -1:
+            self.pos = (49, self.pos[1])
+        elif self.pos[0] >= 50:
+            self.pos = (0, self.pos[1])
+        if self.pos[1] <= -1:
+            self.pos = (self.pos[0], 49)
+        elif self.pos[1] >= 50:
+            self.pos = (self.pos[0], 0)
         self.draw()
         self.getNum()
         try:
@@ -105,6 +147,14 @@ class Window:
 
     def moveDown(self, evt):
         self.pos = (self.pos[0], self.pos[1] + 1)
+        if self.pos[0] <= -1:
+            self.pos = (49, self.pos[1])
+        elif self.pos[0] >= 50:
+            self.pos = (0, self.pos[1])
+        if self.pos[1] <= -1:
+            self.pos = (self.pos[0], 49)
+        elif self.pos[1] >= 50:
+            self.pos = (self.pos[0], 0)
         self.draw()
         self.getNum()
         try:
@@ -131,6 +181,7 @@ class Window:
         print(self.pos)
 
     def start(self):
+        self.startTime = time.time()
         self.starter.destroy()
         self.scrLbl = Label(self.win, textvariable=self.score, fg='white', bg='black')
         self.scrLbl.grid(column=0, row=0)
@@ -166,6 +217,7 @@ class Window:
         print(self.array)
 
     def __init__(self):
+        self.startTime = None
         self.character = None
         self.bool = False
         self.scrLbl = None
@@ -201,19 +253,25 @@ class Window:
             for y in self.array[x]:
                 try:
                     test = int(self.array[x][y])
-                    self.filler[self.array[x][y]].destroy()
+                    try:
+                        self.filler[self.array[x][y]].destroy()
+                    except KeyError:
+                        self.filler[self.array[x][y] + " food"].destroy()
                 except ValueError:
                     self.pos = (24, 24)
                     self.character.grid_forget()
         countdown = 2
         label = Label(self.frame, text=f"Level {self.level}", fg="green", bg="black", font="Ariel 50")
+        label2 = Label(self.frame, text=f"Time elapsed: {self.getTime()}", fg="white", bg="black", font="Ariel 25")
         label.pack()
+        label2.pack()
         self.win.update()
         self.win.update_idletasks()
         while countdown != 0:
             countdown -= 1
             sleep(1)
         label.destroy()
+        label2.destroy()
         num = 0
         for x in range(50):
             self.array[x] = {}
