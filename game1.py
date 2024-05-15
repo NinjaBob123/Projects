@@ -11,10 +11,10 @@ class Window:
         elapsed = fabs(self.startTime - got)
         if elapsed >= 60:
             minutes = round(elapsed / 60)
-            seconds = round(elapsed - (minutes * 60), 2)
+            seconds = fabs(round(elapsed - (minutes * 60), 2))
         else:
             minutes = 0
-            seconds = round(elapsed)
+            seconds = fabs(round(elapsed))
         return f"{minutes}: {seconds}"
 
     def printFood(self, evt):
