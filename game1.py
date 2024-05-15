@@ -1,7 +1,7 @@
-import time
 from time import sleep
 from tkinter import *
 import random
+
 
 class Window:
     def printFood(self, evt):
@@ -17,15 +17,7 @@ class Window:
         self.character.grid_forget()
         self.character.grid(column=self.pos[0], row=self.pos[1])
         self.character.config(bg="green")
-        self.count += 0.01
-        if self.count >= 60:
-            self.minutes = self.count / 60
-            self.seconds = self.count - (minutes * 60)
-        else:
-            self.seconds = self.count
-        self.time.set(f"{self.minutes}: {self.seconds}")
         self.score.set(f"Score is: {self.size}")
-        self.lvlStr.set(f"Level {self.level}")
         self.win.update()
         self.win.update_idletasks()
 
@@ -141,11 +133,7 @@ class Window:
     def start(self):
         self.starter.destroy()
         self.scrLbl = Label(self.win, textvariable=self.score, fg='white', bg='black')
-        self.lvlLbl = Label(self.win, textvariable=self.lvlStr, fg='white', bg='black')
-        self.timeLbl = Label(self.win, textvariable=self.time, fg='white', bg='black')
         self.scrLbl.grid(column=0, row=0)
-        self.lvlLbl.grid(column=0, row=1)
-        self.timeLbl.grid(column=0, row=2)
         self.win.update()
         sleep(0.01)
         self.win.update()
@@ -178,23 +166,16 @@ class Window:
         print(self.array)
 
     def __init__(self):
-        self.newTime = None
-        self.oldTime = None
         self.character = None
         self.bool = False
         self.scrLbl = None
         self.num = None
-        self.lvlLbl = None
-        self.timeLbl = None
-        self.count = 0
         self.level = 1
         self.foodCount = 0
         self.array = {}
         self.size = 0
         self.win = Tk()
         self.win.grid()
-        self.time = StringVar()
-        self.lvlStr = StringVar()
         self.score = StringVar()
         self.score.set(f"Score is: {self.size}")
         self.frame = Frame(self.win, bg='black')
