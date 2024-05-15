@@ -234,7 +234,7 @@ class Window:
         self.frame.grid(column=1, row=0)
         self.win.geometry("600x500")
         self.win.configure(bg="black")
-        self.win.title("Hunters Snake Game")
+        self.win.title("Hunters Game")
         self.starter = Button(self.frame, text="start", command=self.start, bg="red")
         self.starter.grid(column=1, row=1)
         self.pos = (24, 24)
