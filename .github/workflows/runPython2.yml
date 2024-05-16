@@ -22,11 +22,11 @@ jobs:
         #run: |
           #python -m pip install --upgrade pip
           #pip install flake8 pytest
-      - name: Get File name
-        run: File Name
-          python getFile.py
-        env: 
-          script-name: ${{ steps.Get File name.outputs.File Name }}
+      #- name: Get File name
+      #  run: File Name
+      #    python getFile.py
+      #  env: 
+      #    script-name: ${{ steps.Get File name.outputs.File Name }}
       - name: Run in Console
         run: |
-          python ${{ env.script-name }}
+          python make.py
