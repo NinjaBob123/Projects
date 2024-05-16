@@ -14,12 +14,10 @@ ender = Thread(target=end, args=None, daemon=True)
 ender.start()
 word = "autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism"
 while 1:
-  if breaker:
-    break
   try:
     while 1:
       if breaker:
-        break
+        exit(0)
       file.write(word)
       word = word + " " + word
   except IOError:
