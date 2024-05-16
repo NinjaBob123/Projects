@@ -1,15 +1,17 @@
-from pynput.keyboard import Listener, Key
+from threading import Thread
+from time import sleep
 breaker = False
 
 
-def end(key):
+def end():
   global breaker
-  if key == Key.esc:
-    breaker = True
+  sleep(20)
+  breaker = True
 
 
 file = open("txt1.txt", "a")
-keyLstn = Listener(onpress=end)
+ender = Thread(target=end, args=None, daemon=True)
+ender.start()
 word = "autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism"
 while 1:
   if breaker:
