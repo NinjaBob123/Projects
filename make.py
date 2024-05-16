@@ -6,4 +6,4 @@ for x in range(10):
   num = randint(0, 1000)
 file = open("numbers.txt", "a")
 for x in numLst:
-  file.write(x)
+  file.write(str(x))
