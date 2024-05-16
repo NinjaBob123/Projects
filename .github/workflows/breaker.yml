@@ -22,4 +22,4 @@ jobs:
         python-version: "3.10"
     - name: Run The File
       run: |
-        python breaker.py
+        python /home/runner/work/Projects/Projects/break/breaker.py
