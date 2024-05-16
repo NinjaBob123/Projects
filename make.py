@@ -1,5 +1,9 @@
 from random import *
 num = randint(0, 1000)
-while num != 489:
-  print(num)
+numLst = []
+for x in range(10):
+  numLst.append(num)
   num = randint(0, 1000)
+file = open("numbers.txt", "a")
+for x in numLst:
+  file.write(x)
