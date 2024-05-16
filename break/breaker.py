@@ -1,4 +1,4 @@
-file = open("txt1.txt")
+file = open("txt1.txt", "a")
 word = "autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism autism"
 while 1:
   try:
