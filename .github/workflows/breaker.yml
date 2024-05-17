@@ -25,7 +25,10 @@ jobs:
     - name: Run The File
       run: |
         python /home/runner/work/Projects/Projects/break/breaker.py
+    - name: Setup Save
+      uses: oleksiyrudenko/gha-git-credentials@v2-latest
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+    - name: Save the File
+      run: |
         git commit -m "Made smallest text file larger"
-    #- name: Save the Text File
-    #  run: |
-    #    git commit -m "Made smallest text file larger"
