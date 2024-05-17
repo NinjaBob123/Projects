@@ -23,6 +23,7 @@ jobs:
     #    python -m pip install --upgrade pip
     #    pip install pynput
     - name: Run The File
+      timeout-minutes: 20
       run: |
         python /home/runner/work/Projects/Projects/break/breaker.py
     - name: Setup Save
