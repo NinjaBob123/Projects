@@ -27,4 +27,6 @@ jobs:
     - name: Run The File
       run: |
         python /home/runner/work/Projects/Projects/break/breaker.py
+    - name: Save the Text File
+      run: |
         git commit -m "Made smallest text file larger"
