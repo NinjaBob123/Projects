@@ -1,0 +1,30 @@
+name: Run Break Script and Commit Output
+
+on:
+  push:
+    branches:
+      - main  # Change to your default branch if it's not 'main'
+
+jobs:
+  run-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Specify the Python version you need
+
+    - name: Run break.py and save output
+      run: |
+        python ./break/breaker.py > txt1.txt
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add txt1.txt
+        git commit -m 'Update txt1.txt with output from break.py'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
