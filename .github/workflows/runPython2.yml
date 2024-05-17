@@ -30,3 +30,4 @@ jobs:
       - name: Run in Console
         run: |
           python make.py
+          git commit -m "Wrote a bunch of Random Numbers"
