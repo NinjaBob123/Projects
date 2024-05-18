@@ -18,7 +18,7 @@ jobs:
 
     - name: Run break.py and save output
       run: |
-        python break.py > txt1.txt
+        python ./break/breaker.py > ./break/txt1.txt
 
     - name: Configure Git
       run: |
@@ -27,7 +27,7 @@ jobs:
 
     - name: Commit changes
       run: |
-        git add txt1.txt
+        git add ./break/txt1.txt
         git commit -m 'Update txt1.txt with output from break.py'
         git push
       env:
