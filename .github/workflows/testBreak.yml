@@ -1,9 +1,7 @@
 name: Run Break Script and Commit Output
 
 on:
-  push:
-    branches:
-      - main  # Change to your default branch if it's not 'main'
+  workflow_dispatch:
 
 jobs:
   run-and-commit:
