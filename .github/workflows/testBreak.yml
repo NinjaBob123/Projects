@@ -18,9 +18,15 @@ jobs:
 
     - name: Run break.py and save output
       run: |
-        python ./break/breaker.py > txt1.txt
+        python break.py > txt1.txt
+
+    - name: Configure Git
+      run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
+
+    - name: Commit changes
+      run: |
         git add txt1.txt
         git commit -m 'Update txt1.txt with output from break.py'
         git push
