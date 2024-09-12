@@ -20,4 +20,5 @@ class NeuralNet:
       network[2].append({'bias': None,
                          'output': None,
                          'type': 'output'})
+    print(networkNeurons)
     networkConnections = []
