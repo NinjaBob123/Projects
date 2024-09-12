@@ -21,4 +21,3 @@ class NeuralNet:
                          'output': None,
                          'type': 'output'})
     networkConnections = []
-    for layer in networkNeurons
