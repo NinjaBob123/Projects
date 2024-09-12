@@ -21,3 +21,4 @@ class NeuralNet:
                          'bias': None,
                          'output': None,
                          'type': 'output'})
+//Take out neuron specific weights
