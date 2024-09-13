@@ -63,14 +63,14 @@ class NetGen:
                                 'to': f'o{outNeuronNum}',
                                 'val': random.random() + random.randint(-1, 3)
                             })
-            # Create connection from hidden neurons to next hidden layer
-                else:
-                  for inNeuron in range(len(networkNeurons[layer + 1])):
-                      for outNeuron in range(len(networkNeurons[layer + 2])):
-                          networkConnections[layer + 1].append({
-                              'from': f'h{inNeuron}',
-                              'to': f'h{outNeuron}',
-                              'val': random.random() + random.randint(-1, 3)})
+                    # Create connection from hidden neurons to next hidden layer
+                    else:
+                      for inNeuron in range(len(networkNeurons[layer + 1])):
+                          for outNeuron in range(len(networkNeurons[layer + 2])):
+                              networkConnections[layer + 1].append({
+                                  'from': f'h{inNeuron}',
+                                  'to': f'h{outNeuron}',
+                                  'val': random.random() + random.randint(-1, 3)})
               
 
         print("Network connections:", networkConnections)
@@ -85,14 +85,19 @@ def feedForward(network: dict, inputs: list[float]):
         layerCount = 0
         newInput = []
         for layer in networkNeurons:
+            inCount = 0
             for inNeuron in networkNeurons[layer]:
                 for outNeuron in networkNeurons[layer + 1]:
+                    outCount = 0
                     inBias = inNeuron['bias']
-                    connect = networkConnections[layer][#connection] #finish
-                    input = inputs[layerCount]
-                    
+                    for connection in networkConnections[layer]:
+                        if connection['from'] == f'i{inCount}' or connection['from'] == f'h{inCount}':
+                            if connection['to'] == f'h{outCount}' or connection['to'] == f'o{outCount}':
+                                input = (inputs[layerCount] + inBias) * connection['val']
+                    newInput.append(input)
                     layerCount += 1
             inputs = newInput
             newInput = []
+        return inputs #I realize that it says 'inputs' but if you comprehend the code, by this point in time, it is the final outputs (hopefully)
 # Example usage
 #net = NetGen(4, 1, 4, 1)
