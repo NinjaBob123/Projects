@@ -94,6 +94,8 @@ def feedForward(network: dict, inputs: list[float]):
                         if connection['from'] == f'i{inCount}' or connection['from'] == f'h{inCount}':
                             if connection['to'] == f'h{outCount}' or connection['to'] == f'o{outCount}':
                                 input = (inputs[layerCount] + inBias) * connection['val']
+                    if input < 0:
+                        input = 0
                     newInput.append(input)
                     layerCount += 1
             inputs = newInput
