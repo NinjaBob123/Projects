@@ -15,8 +15,7 @@ class NetGen:
         # Add input neurons
         for neuronNum in range(inParam):
             networkNeurons[0].append({
-                'input': None,
-                'bias': None,
+                'bias': random.random() + random.randint(-3, 3),
                 'type': 'input'
             })
 
@@ -27,14 +26,13 @@ class NetGen:
                     'bias': None,
                     'type': 'hidden'
                 }
-                neuron['bias'] = random.random() + random.randint(0, 3)
+                neuron['bias'] = random.random() + random.randint(-3, 3)
                 networkNeurons[layer + 1].append(neuron)
 
         # Add output neurons
         for neuronNum in range(outParam):
             networkNeurons[-1].append({
-                'bias': None,
-                'output': None,
+                'bias': random.random() + random.randint(-3, 3),
                 'type': 'output'
             })
 
@@ -51,7 +49,7 @@ class NetGen:
                 networkConnections[0].append({
                     'from': f'i{connection}',
                     'to': f'h{neuron}',
-                    'val': random.random() + random.randint(0, 3)
+                    'val': random.random() + random.randint(-1, 3)
                 })
 
         # Create connections from hidden neurons to output neurons
@@ -63,20 +61,38 @@ class NetGen:
                             networkConnections[layer + 1].append({
                                 'from': f'h{neuron}',
                                 'to': f'o{outNeuronNum}',
-                                'val': random.random() + random.randint(0, 3)
+                                'val': random.random() + random.randint(-1, 3)
                             })
             # Create connection from hidden neurons to next hidden layer
-            else:
-              for inNeuron in range(len(networkNeurons[layer + 1])):
-                  for outNeuron in range(len(networkNeurons[layer + 2])):
-                      networkConnections[layer + 1].append({
-                          'from': f'h{inNeuron}',
-                          'to': f'h{outNeuron}',
-                          'val': random.random() + random.randint(0, 3)
+                else:
+                  for inNeuron in range(len(networkNeurons[layer + 1])):
+                      for outNeuron in range(len(networkNeurons[layer + 2])):
+                          networkConnections[layer + 1].append({
+                              'from': f'h{inNeuron}',
+                              'to': f'h{outNeuron}',
+                              'val': random.random() + random.randint(-1, 3)})
               
 
         print("Network connections:", networkConnections)
-        return networkNeurons, networkConnections
-
+        network = {'neurons': networkNeurons,
+                   'connections': networkConnections}
+        return network
+def feedForward(network: dict, inputs: list[float]):
+    networkNeurons = network['neurons']
+    networkConnections = network['connections']
+    inNeurons = networkNeurons[0]
+    if len(input) == len(networkNeurons[0]):
+        layerCount = 0
+        newInput = []
+        for layer in networkNeurons:
+            for inNeuron in networkNeurons[layer]:
+                for outNeuron in networkNeurons[layer + 1]:
+                    inBias = inNeuron['bias']
+                    connect = networkConnections[layer][#connection] #finish
+                    input = inputs[layerCount]
+                    
+                    layerCount += 1
+            inputs = newInput
+            newInput = []
 # Example usage
-#net = NeuralNet(4, 1, 4, 1)
+#net = NetGen(4, 1, 4, 1)
