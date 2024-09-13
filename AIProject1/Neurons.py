@@ -65,9 +65,15 @@ class NeuralNet:
                                 'to': f'o{outNeuronNum}',
                                 'val': random.random() + random.randint(0, 3)
                             })
+            # Create connection from hidden neurons to next hidden layer
             else:
-              pass
-              # will add hidden to hidden after chat fix
+              for inNeuron in range(len(networkNeurons[layer + 1])):
+                  for outNeuron in range(len(networkNeurons[layer + 2])):
+                      networkConnections[layer + 1].append({
+                          'from': f'h{inNeuron}',
+                          'to': f'h{outNeuron}',
+                          'val': random.random() + random.randint(0, 3)
+              
 
         print("Network connections:", networkConnections)
 
