@@ -1,6 +1,6 @@
 import random
 
-class NeuralNet:
+class NetGen:
     def __init__(self, inSize, hideSize, hideWidth, outSize):
         self.initialize(inSize, hideSize, hideWidth, outSize)
 
