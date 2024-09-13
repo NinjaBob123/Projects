@@ -76,6 +76,7 @@ class NetGen:
               
 
         print("Network connections:", networkConnections)
+        return networkNeurons, networkConnections
 
 # Example usage
 #net = NeuralNet(4, 1, 4, 1)
