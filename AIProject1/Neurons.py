@@ -78,4 +78,4 @@ class NeuralNet:
         print("Network connections:", networkConnections)
 
 # Example usage
-net = NeuralNet(4, 1, 4, 1)
+#net = NeuralNet(4, 1, 4, 1)
