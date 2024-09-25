@@ -13,5 +13,5 @@ for x in range(len(values)):
         values[x][y][1] = randint(0, 255)
         values[x][y][2] = randint(0, 255)
         values[x][y][3] = 100
-        print(f"({values[x][y][0]}, {values[x][y][1]}, {values[x][y][2]})")
+        #print(f"({values[x][y][0]}, {values[x][y][1]}, {values[x][y][2]})")
 img = imgio.imwrite('./custom.png', values)
