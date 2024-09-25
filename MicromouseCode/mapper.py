@@ -1,6 +1,6 @@
 import imageio as imgio #add imageio
 import numpy as npy
-values = npy.ndarray((32, 32, 3), dtype=npy.uint8)
+values = npy.ndarray((16*3, 16*3, 3), dtype=npy.uint8)
 print(values)
 for x in range(len(values)):
     for y in range(len(values[x])):
